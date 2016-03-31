@@ -1,0 +1,6 @@
+applications:
+- name: got-em
+  host: got-em
+  instances: 1
+  disk_quota: 1024M
+  memory: 512M
