@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  each sound in sounds
+    div
+      button(data-sound=sound)= sound
+  p
+    a(href="/") back to broadcaster

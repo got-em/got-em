@@ -6,8 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
-
+var sounds = require('./routes/sounds');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')();
@@ -28,11 +27,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.get('/sounds/horn', function(req, res, next) {
-  io.emit('sounds:horn');
-  return res.status(200).json({ status: 'ok' });
-});
-app.use('/users', users);
+app.use('/sounds', sounds(io));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
