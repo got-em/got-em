@@ -7,6 +7,9 @@ block content
       each sound in sounds
         .btn-group
           button.btn.btn-default(data-sound=sound)= sound
+    form.speech(onsubmit="return speech()")
+      input.input-speech(type="text", name="message", placeholder="Enter text-to-speech message")
+      button.btn.btn-default(type="submit") Submit
     p
       label
         input.mute(type="checkbox")

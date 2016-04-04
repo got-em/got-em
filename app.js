@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var sounds = require('./routes/sounds');
+var speech = require('./routes/speech');
+
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')();
@@ -27,6 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/speech', speech(io));
 app.use('/sounds', sounds(io));
 
 // catch 404 and forward to error handler

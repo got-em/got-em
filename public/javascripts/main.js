@@ -1,6 +1,7 @@
 var socket = io();
 var sounds = {};
 var muteEl = document.querySelectorAll('.mute')[0];
+var speechEl = document.querySelectorAll('.input-speech')[0];
 
 socket.on('load', function(soundList) {
   // Build sound dictionary (String -> Audio)
@@ -9,6 +10,13 @@ socket.on('load', function(soundList) {
     registerOnClick(sound);
     return sounds;
   }, sounds);
+});
+
+socket.on('speech', function(msg) {
+  if (muteEl.checked) return;
+  if (!msg.length) return;
+  var utterance = new SpeechSynthesisUtterance(msg);
+  window.speechSynthesis.speak(utterance);
 });
 
 socket.on('play', function(sound) {
@@ -35,3 +43,13 @@ function registerOnClick(sound) {
     });
   }
 }
+
+var speech = function() {
+  event.preventDefault();
+  var msg = speechEl.value;
+  speechEl.value = '';
+  var request = new XMLHttpRequest();
+  request.open('POST', '/speech', true);
+  request.setRequestHeader('Content-Type', 'application/json');
+  request.send(JSON.stringify({ message: msg }));
+};
