@@ -1,1 +1,7 @@
 /*todo- add custom styles*/
+.btn[data-sound="cantseemenow"] {
+  color: white;
+}
+.btn[data-sound="cantseemenow"]:hover {
+  color: black;
+}
