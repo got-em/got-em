@@ -1,9 +1,15 @@
 extends layout
 
 block content
-  h1 got em!!
-  p
-    a(href="/sounds") view soundboard
-
+  .container
+    h1 got em!!
+    .btn-group.btn-group-justified
+      each sound in sounds
+        .btn-group
+          button.btn.btn-default(data-sound=sound)= sound
+    p
+      label
+        input.mute(type="checkbox")
+        | &nbsp;Local Mute
 block scripts
-  script(src="/javascripts/broadcaster.js")
+  script(src="/javascripts/main.js")
