@@ -10,7 +10,6 @@ socket.on('load', function(soundList) {
     registerOnClick(sound);
     return sounds;
   }, sounds);
-    console.log(sounds);
 });
 
 socket.on('speech', function(msg) {
@@ -34,7 +33,6 @@ function registerOnClick(sound) {
 
   // Register click handler
   if (el.length) {
-    console.log('registering click', sound);
     el[0].addEventListener('click', function() {
       var request = new XMLHttpRequest();
       request.open('GET', '/sounds/' + sound, true);
@@ -43,8 +41,6 @@ function registerOnClick(sound) {
       };
       request.send();
     });
-  } else {
-    console.log('cuodnlt find ', sound);
   }
 }
 
