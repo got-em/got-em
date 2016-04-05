@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var sounds = require('./routes/sounds');
 var speech = require('./routes/speech');
-var slack = require('./routes/slack')
+var slack = require('./routes/slack');
 
 var app = express();
 var server = require('http').Server(app);
