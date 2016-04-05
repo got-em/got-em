@@ -8,6 +8,7 @@ block content
         .btn-group
           button.btn.btn-default(data-sound=sound)= sound
     form.speech(onsubmit="return speech()")
+      select.select-voice
       input.input-speech(type="text", name="message", placeholder="Enter text-to-speech message")
       button.btn.btn-default(type="submit") Submit
     p
