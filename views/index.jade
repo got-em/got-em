@@ -1,18 +1,21 @@
 extends layout
 
 block content
-  .container
-    h1 got em!!
-    .btn-group.btn-group-justified
-      each sound in sounds
-        .btn-group
-          button.btn.btn-default(data-sound=sound)= sound
-    form.speech(onsubmit="return speech()")
-      input.input-speech(type="text", name="message", placeholder="Enter text-to-speech message")
-      button.btn.btn-default(type="submit") Submit
-    p
-      label
-        input.mute(type="checkbox")
-        | &nbsp;Local Mute
+  section.section.app
+    .container
+      h1 Got.Em
+      h2 Emojis for your ears
+      .btn-group.btn-group-justified
+        each sounds in soundsGroup
+          .btn-group
+            each sound in sounds
+              button.btn.btn-default(data-sound=sound)= sound
+      form.speech(onsubmit="return speech()")
+        input.input-speech(type="text", name="message", placeholder="Enter text-to-speech message")
+        button.btn.btn-default(type="submit") Submit
+      p
+        label
+          input.mute(type="checkbox")
+          | &nbsp;Local Mute
 block scripts
   script(src="/javascripts/main.js")
