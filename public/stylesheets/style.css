@@ -5,3 +5,28 @@
 .btn[data-sound="cantseemenow"]:hover {
   color: black;
 }
+
+.section{
+  padding: 15px 0;
+}
+.btn{
+  border-radius: 0;
+}
+
+/*main*/
+.main{
+  background: url("../images/bg.jpg") no-repeat fixed center center;
+  background-size: cover;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.app{
+  flex: 1;
+}
+
+/*footer*/
+footer{
+  background: #333;
+}
