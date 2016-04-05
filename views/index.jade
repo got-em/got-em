@@ -5,15 +5,17 @@ block content
     .container
       h1 Got.Em
       h2 Emojis for your ears
-      .btn-group.btn-group-justified
+      .soundpad
         each sounds in soundsGroup
-          .btn-group
+          .soundpad-row
             each sound in sounds
-              button.btn.btn-default(data-sound=sound)= sound
-      form.speech(onsubmit="return speech()")
-        select.select-voice
-        input.input-speech(type="text", name="message", placeholder="Enter text-to-speech message")
-        button.btn.btn-default(type="submit") Submit
+              button.btn.soundpad-btn(data-sound=sound)= sound
+      h3 ALPHA Got.Em Voice
+      form.speech.form-inline(onsubmit="return speech()")
+        .form-group
+          select.select-voice.form-control
+          input.input-speech.form-control(type="text", name="message", placeholder="Enter text-to-speech message")
+          button.btn.btn-default(type="submit") Submit
       p
         label
           input.mute(type="checkbox")
