@@ -1,9 +1,6 @@
-/*todo- add custom styles*/
+/*todo- clean up*/
 .btn[data-sound="cantseemenow"] {
   color: white;
-}
-.btn[data-sound="cantseemenow"]:hover {
-  color: black;
 }
 
 .section{
@@ -29,4 +26,27 @@
 /*footer*/
 footer{
   background: #333;
+}
+
+.soundpad{
+  margin: 0 -5px;
+}
+.soundpad-row{
+  display: flex;
+  flex-direction: row;
+}
+.soundpad-btn{
+  flex-grow: 1;
+  flex-basis: 0;
+  background: #fff;
+  color: #333;
+  transition: all 300ms ease;
+  display: flex;
+  min-height: 150px;
+  justify-content: center;
+  margin: 5px;
+}
+.soundpad-btn:hover{
+  background: #f16859;
+  color: #fff;
 }
