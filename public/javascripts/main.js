@@ -2,6 +2,22 @@ var socket = io();
 var sounds = {};
 var muteEl = document.querySelectorAll('.mute')[0];
 var speechEl = document.querySelectorAll('.input-speech')[0];
+var selectEl = document.querySelectorAll('.select-voice')[0];
+var voicesLoaded = false;
+
+// wait on voices to be loaded before fetching list (loaded async)
+window.speechSynthesis.onvoiceschanged = function() {
+  if (voicesLoaded) return;
+
+  voicesLoaded = true;
+  window.speechSynthesis.getVoices().forEach(function(voice) {
+    var option = document.createElement("option");
+    option.text = voice.name;
+    option.value = voice.name;
+    option.selected = voice.default;
+    selectEl.appendChild(option);
+  });
+};
 
 socket.on('load', function(soundList) {
   // Build sound dictionary (String -> Audio)
@@ -16,6 +32,11 @@ socket.on('speech', function(msg) {
   if (muteEl.checked) return;
   if (!msg.length) return;
   var utterance = new SpeechSynthesisUtterance(msg);
+  utterance.voice = speechSynthesis
+                      .getVoices()
+                      .filter(function(voice) {
+                        return voice.name === selectEl.value;
+                      })[0];
   window.speechSynthesis.speak(utterance);
 });
 

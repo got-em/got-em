@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var sounds = require('./routes/sounds');
 var speech = require('./routes/speech');
+var slack = require('./routes/slack');
 
 var app = express();
 var server = require('http').Server(app);
@@ -29,6 +30,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/slack', slack);
 app.use('/speech', speech(io));
 app.use('/sounds', sounds(io));
 

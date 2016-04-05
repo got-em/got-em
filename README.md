@@ -28,15 +28,25 @@ API
 
 #### GET /
 
-Get broadcaster page, open this to listen..
+View main page. Play sounds or text-to-speech.
 
 #### GET /sounds/:sound
 
 Play a sound
 
-#### GET /sounds
+#### POST /speech
 
-View the sound board
+* Body
+  * message - string to convert to audio
+
+Text-to-speech
+
+#### POST /slack
+
+* Body
+  * text - name of the sound file to play
+
+Play a sound via POST
 
 License
 ---
