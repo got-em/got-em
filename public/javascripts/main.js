@@ -3,6 +3,7 @@ var sounds = {};
 var muteEl = document.querySelectorAll('.mute')[0];
 var speechEl = document.querySelectorAll('.input-speech')[0];
 var selectEl = document.querySelectorAll('.select-voice')[0];
+var speechLogEl = document.querySelectorAll('.textarea-speech-log')[0];
 var voicesLoaded = false;
 
 // wait on voices to be loaded before fetching list (loaded async)
@@ -28,16 +29,23 @@ socket.on('load', function(soundList) {
   }, sounds);
 });
 
-socket.on('speech', function(msg) {
-  if (muteEl.checked) return;
+socket.on('speech', function(data) {
+  var msg = data.message;
+  var msgVoice = data.voice;
+
   if (!msg.length) return;
-  var utterance = new SpeechSynthesisUtterance(msg);
-  utterance.voice = speechSynthesis
-                      .getVoices()
-                      .filter(function(voice) {
-                        return voice.name === selectEl.value;
-                      })[0];
-  window.speechSynthesis.speak(utterance);
+
+  if (!muteEl.checked) {
+    var utterance = new SpeechSynthesisUtterance(msg);
+    utterance.voice = speechSynthesis
+                        .getVoices()
+                        .filter(function(voice) {
+                          return voice.name === msgVoice;
+                        })[0];
+    window.speechSynthesis.speak(utterance);
+  }
+
+  speechLogEl.value = speechLogEl.value + '(' + msgVoice + ' ' + new Date().toLocaleTimeString() + ') ' + msg + '\n';
 });
 
 socket.on('play', function(sound) {
@@ -72,5 +80,5 @@ var speech = function() {
   var request = new XMLHttpRequest();
   request.open('POST', '/speech', true);
   request.setRequestHeader('Content-Type', 'application/json');
-  request.send(JSON.stringify({ message: msg }));
+  request.send(JSON.stringify({ message: msg, voice: selectEl.value }));
 };
