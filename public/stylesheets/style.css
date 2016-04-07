@@ -1,13 +1,11 @@
-/*todo- clean up*/
-.btn[data-sound="cantseemenow"] {
-  color: white;
-}
-
 .section{
   padding: 15px 0;
 }
 .btn{
   border-radius: 0;
+}
+.btn[data-sound="cantseemenow"] {
+  color: white;
 }
 
 /*main*/
@@ -23,30 +21,43 @@
   flex: 1;
 }
 
-/*footer*/
-footer{
-  background: #333;
-}
-
+/*soundpad*/
 .soundpad{
   margin: 0 -5px;
 }
 .soundpad-row{
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+}
+@media (min-width: 768px){
+  .soundpad-row{
+    flex-direction: row;
+  }
 }
 .soundpad-btn{
-  flex-grow: 1;
-  flex-basis: 0;
+  flex: 1 0 50%;
   background: #fff;
   color: #333;
   transition: all 300ms ease;
   display: flex;
   min-height: 150px;
   justify-content: center;
-  margin: 5px;
+  white-space: normal;
+  border: 1px solid #333;
 }
 .soundpad-btn:hover{
   background: #f16859;
   color: #fff;
+}
+@media (min-width: 768px){
+  .soundpad-btn{
+    margin: 5px;
+    flex: 1 0 0;
+    border: 1px solid transparent;
+  }
+}
+
+/*footer*/
+footer{
+  background: #333;
 }
