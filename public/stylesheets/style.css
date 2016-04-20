@@ -8,6 +8,33 @@
   color: white;
 }
 
+/*fonts*/
+body{
+  font-family: 'Open Sans', sans-serif;
+}
+h1, h2, h3, h4, h5{
+  font-family: 'Merriweather', serif;
+  font-weight: 900;
+}
+
+/*hero*/
+.hero{
+  padding: 0;
+}
+@media (min-width: 768px){
+  .hero{
+    padding: 60px 0;
+  }
+}
+.hero h1{
+  font-size: 60px;
+}
+@media (min-width: 768px){
+  .hero h1{
+    font-size: 110px;
+  }
+}
+
 /*main*/
 .main{
   background: url("../images/bg.jpg") no-repeat fixed center center;
