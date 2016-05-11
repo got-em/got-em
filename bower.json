@@ -1,0 +1,19 @@
+{
+  "name": "got-em",
+  "version": "0.0.0",
+  "homepage": "https://github.com/prestonp/got-em",
+  "authors": [
+    "Preston Pham <ppham@us.ibm.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "speech-synthesis": "~0.4.0"
+  }
+}
