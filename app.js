@@ -23,13 +23,13 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+//app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+app.use('/', routes(io));
 app.use('/slack', slack);
 app.use('/speech', speech(io));
 app.use('/sounds', sounds(io));
@@ -66,10 +66,15 @@ app.use(function(err, req, res, next) {
 });
 
 io.on('connection', function(socket) {
-  console.log('user connected');
+  socket.on('joinroom', function(room){
+    socket.room = room;
+    socket.join(socket.room);
+    console.log('user connected to', socket.room);
+  });
 
   socket.on('disconnect', function() {
-    console.log('user disconnected');
+    socket.leave(socket.room);
+    console.log('user disconnected from', socket.room);
   });
 });
 

@@ -16,7 +16,8 @@ module.exports = io => {
   // expose routes per sound
   sounds.forEach((sound) => {
     router.get(`/${sound}`, function(req, res, next) {
-      io.emit('play', sound);
+      var room = req.query.room;
+      io.to(room).emit('play', sound);
       return res.status(200).json({ status: 'ok' });
     });
   });
