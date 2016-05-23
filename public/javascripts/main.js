@@ -5,6 +5,7 @@ var speechEl = document.querySelectorAll('.input-speech')[0];
 var selectEl = document.querySelectorAll('.select-voice')[0];
 var speechLogEl = document.querySelectorAll('.textarea-speech-log')[0];
 var voicesLoaded = false;
+var room = window.location.pathname.split('/').pop();
 
 // wait on voices to be loaded before fetching list (loaded async)
 window.speechSynthesis.onvoiceschanged = function() {
@@ -19,6 +20,8 @@ window.speechSynthesis.onvoiceschanged = function() {
     selectEl.appendChild(option);
   });
 };
+
+socket.emit('joinroom', room);
 
 socket.on('load', function(soundList) {
   // Build sound dictionary (String -> Audio)
@@ -64,7 +67,7 @@ function registerOnClick(sound) {
   if (el.length) {
     el[0].addEventListener('click', function() {
       var request = new XMLHttpRequest();
-      request.open('GET', '/sounds/' + sound, true);
+      request.open('GET', '/sounds/' + sound + '?room=' + room, true);
       request.onerror = function() {
         alert('Could not reach server!');
       };
@@ -78,7 +81,7 @@ var speech = function() {
   var msg = speechEl.value;
   speechEl.value = '';
   var request = new XMLHttpRequest();
-  request.open('POST', '/speech', true);
+  request.open('POST', '/speech?room=' + room, true);
   request.setRequestHeader('Content-Type', 'application/json');
   request.send(JSON.stringify({ message: msg, voice: selectEl.value }));
 };
