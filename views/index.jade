@@ -6,23 +6,5 @@ block content
       header.hero.text-center
         h1 Got.Em
         h2 Emojis for your ears
-      .soundpad
-        each sounds in soundsGroup
-          .soundpad-row
-            each sound in sounds
-              button.btn.soundpad-btn(data-sound=sound)= sound
-      h3 ALPHA Got.Em Voice
-      form.speech.form-inline(onsubmit="return speech()")
-        .form-group
-          select.select-voice.form-control
-          input.input-speech.form-control(type="text", name="message", placeholder="Enter text-to-speech message")
-          button.btn.btn-default(type="submit") Submit
-      .form-group
-        label(for="speech-log") Text-to-speech Log
-        textarea#speech-log.textarea-speech-log.form-control(rows="3", readonly)
-      p
-        label
-          input.mute(type="checkbox")
-          | &nbsp;Local Mute
 block scripts
-  script(src="/javascripts/main.js")
+  script(src="/javascripts/joinroom.js")
