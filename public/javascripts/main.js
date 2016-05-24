@@ -41,10 +41,10 @@ socket.on('speech', function(data) {
   if (!muteEl.checked) {
     var utterance = new SpeechSynthesisUtterance(msg);
     utterance.voice = speechSynthesis
-                        .getVoices()
-                        .filter(function(voice) {
-                          return voice.name === msgVoice;
-                        })[0];
+    .getVoices()
+    .filter(function(voice) {
+      return voice.name === msgVoice;
+    })[0];
     window.speechSynthesis.speak(utterance);
   }
 
