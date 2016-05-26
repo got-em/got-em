@@ -70,6 +70,7 @@ io.on('connection', function(socket) {
     socket.room = room;
     socket.join(socket.room);
     console.log('user connected to', socket.room);
+    io.emit('notification', 'user has connect');
   });
 
   socket.on('disconnect', function() {
