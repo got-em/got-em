@@ -73,6 +73,8 @@ socket.on('speech', function(data) {
   }
 
   speechLogEl.value = speechLogEl.value + '(' + msgVoice + ' ' + new Date().toLocaleTimeString() + ') ' + msg + '\n';
+  var textarea = document.getElementById('speech-log');
+  textarea.scrollTop = textarea.scrollHeight;
 });
 
 socket.on('play', function(sound) {
