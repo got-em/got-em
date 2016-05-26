@@ -11,6 +11,7 @@
 /*fonts*/
 body{
   font-family: 'Open Sans', sans-serif;
+  position: relative;;
 }
 h1, h2, h3, h4, h5{
   font-family: 'Merriweather', serif;
@@ -87,4 +88,23 @@ h1, h2, h3, h4, h5{
 /*footer*/
 footer{
   background: #333;
+}
+
+/*notifications*/
+#notification-manager{
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+.toast{
+  background: #fff;
+  height: 50px;
+  width: 200px;
+  padding: 15px;
+  opacity: 0;
+  transition: all 300ms ease;
+  border: 1px solid #333;
+}
+.toast--active{
+  opacity: 1;
 }
