@@ -108,3 +108,18 @@ footer{
 .toast--active{
   opacity: 1;
 }
+
+/*lobby*/
+#list ul{
+  padding: 0;
+}
+#list li{
+  list-style: none;
+}
+#list a{
+  transition: all 300ms ease;
+  text-decoration: none;
+}
+#list a:hover{
+  color: #f16859;
+}

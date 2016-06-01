@@ -65,17 +65,29 @@ app.use(function(err, req, res, next) {
   });
 });
 
+var roomList = [];
+
 io.on('connection', function(socket) {
+  socket.on('getRooms', function(){
+    socket.emit('roomList', roomList);
+  });
+
   socket.on('joinroom', function(room){
     socket.room = room;
     socket.join(socket.room);
     console.log('user connected to', socket.room);
     io.emit('notification', 'user has connected');
+    roomList.push(socket.room);
+    io.emit('roomList', roomList);
   });
 
   socket.on('disconnect', function() {
-    socket.leave(socket.room);
-    console.log('user disconnected from', socket.room);
+    if(socket.room){
+      socket.leave(socket.room);
+      console.log('user disconnected from', socket.room);
+      roomList.splice(roomList.indexOf(socket.room), 1);
+      io.emit('roomList', roomList);
+    }
   });
 });
 

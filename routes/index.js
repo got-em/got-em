@@ -16,5 +16,9 @@ module.exports = io => {
     res.render('room', { soundsGroup });
   });
 
+  router.get('/lobby', function(req, res, next) {
+    res.render('lobby');
+  });
+
   return router;
 };
