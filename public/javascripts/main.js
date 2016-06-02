@@ -111,3 +111,7 @@ var speech = function() {
   request.setRequestHeader('Content-Type', 'application/json');
   request.send(JSON.stringify({ message: msg, voice: selectEl.value }));
 };
+
+var roomLocation = document.getElementById('roomLocation');
+roomLocation.innerText = window.location.href;
+roomLocation.setAttribute('href', window.location.href);

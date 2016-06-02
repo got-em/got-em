@@ -6,5 +6,20 @@ function guid() {
   }
   return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4();
 }
-var uuid = guid();
-window.location = "/room/" + uuid;
+
+function joinRoom(name) {
+  name = name || guid();
+  window.location = '/room/' + name;
+}
+
+var namedForm = document.getElementById('joinNamed');
+var btnRandom = document.getElementById('joinRandom');
+
+namedForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  joinRoom(document.getElementById('roomName').value);
+});
+
+btnRandom.addEventListener('click', function() {
+  joinRoom();
+});
