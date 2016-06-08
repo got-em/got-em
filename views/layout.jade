@@ -3,15 +3,17 @@ html
   head
     title Got em.
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
-    link(href='https://fonts.googleapis.com/css?family=Merriweather:900|Open+Sans:400' rel='stylesheet' type='text/css')
+    link(href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css')
     link(rel='stylesheet', href='/stylesheets/style.css')
     meta(name='viewport', content='width=device-width, initial-scale=1')
   body
     .main
-      block content
-      footer.section
+      section.app
         .container
-          small Got.Em 2016
+          header.text-center.page-header
+            h1.jumbo GOTEM
+            h2 Emojis for your ears
+          block content
     #notification-manager
     script(src="/socket.io/socket.io.js")
     block scripts

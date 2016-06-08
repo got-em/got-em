@@ -1,63 +1,37 @@
-.section{
-  padding: 15px 0;
-}
-.btn{
-  border-radius: 0;
-}
-.btn[data-sound="cantseemenow"] {
-  color: white;
-}
-
-/*fonts*/
+/*global*/
 body{
-  font-family: 'Open Sans', sans-serif;
-  position: relative;;
+  color: #fff;
+  font-family: 'Lato', sans-serif;
 }
-h1, h2, h3, h4, h5{
-  font-family: 'Merriweather', serif;
-  font-weight: 900;
+a{
+  color: #BF5842;
 }
-
-/*hero*/
-.hero{
-  padding: 0;
-}
-@media (min-width: 768px){
-  .hero{
-    padding: 60px 0;
-  }
-}
-.hero h1{
-  font-size: 60px;
-}
-@media (min-width: 768px){
-  .hero h1{
-    font-size: 110px;
-  }
+a:hover{
+  color: #CC5E46;
 }
 
 /*main*/
 .main{
-  background: url("../images/bg.jpg") no-repeat fixed center center;
-  background-size: cover;
-  color: #fff;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 .app{
   flex: 1;
+  background: url('../images/bg.jpeg') center center;
+  background-size: cover;
+  background-attachment: fixed;
   position: relative;
+  padding: 100px 0;
 }
-/*background mask for better visibility*/
 .app:before{
   content: '';
-  width: 100%;
-  height: 100%;
   position: absolute;
-  background: rgba(0,0,0,0.4);
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
 }
 .app > .container{
   position: relative;
@@ -65,43 +39,51 @@ h1, h2, h3, h4, h5{
 
 /*soundpad*/
 .soundpad{
-  margin: 0 -5px;
-}
-.soundpad-row{
-  display: flex;
-  flex-wrap: wrap;
-}
-@media (min-width: 768px){
-  .soundpad-row{
-    flex-direction: row;
-  }
+  padding-top: 15px;
 }
 .soundpad-btn{
-  flex: 1 0 50%;
+  display: block;
+  height: 150px;
+  width: 100%;
+  margin-bottom: 30px;
   background: #fff;
   color: #333;
   transition: all 300ms ease;
-  display: flex;
-  min-height: 150px;
-  justify-content: center;
-  white-space: normal;
-  border: 1px solid #333;
 }
 .soundpad-btn:hover{
-  background: #f16859;
+  background: #CC5E46;
   color: #fff;
 }
-@media (min-width: 768px){
-  .soundpad-btn{
-    margin: 5px;
-    flex: 1 0 0;
-    border: 1px solid transparent;
-  }
+.soundpad-btn[data-sound="cantseemenow"] {
+  color: white;
 }
 
-/*footer*/
-footer{
-  background: #333;
+/*tyopgraphy*/
+.jumbo{
+  font-size: 100px;
+  font-weight: 300;
+}
+.page-header{
+  border: 0;
+}
+.gap{
+  margin: 30px 0;
+}
+#roomLocation{
+  word-wrap: break-word;
+}
+
+/*form*/
+.btn-default{
+  background: #BF5842;
+  color: #fff;
+  border-color: #BF5842;
+  transition: all 300ms ease;
+}
+.btn-default:hover{
+  background: #CC5E46;
+  color: #fff;
+  border-color: #CC5E46;
 }
 
 /*notifications*/
@@ -111,29 +93,12 @@ footer{
   right: 0;
 }
 .toast{
-  background: #fff;
-  height: 50px;
-  width: 200px;
+  background: #BF5842;
+  color: #fff;
   padding: 15px;
   opacity: 0;
   transition: all 300ms ease;
-  border: 1px solid #333;
 }
 .toast--active{
   opacity: 1;
-}
-
-/*lobby*/
-#list ul{
-  padding: 0;
-}
-#list li{
-  list-style: none;
-}
-#list a{
-  transition: all 300ms ease;
-  text-decoration: none;
-}
-#list a:hover{
-  color: #f16859;
 }

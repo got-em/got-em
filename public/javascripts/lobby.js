@@ -3,6 +3,7 @@ socket.emit('getRooms');
 socket.on('roomList', function(roomList) {
   var list = document.getElementById('list');
   var ul = document.createElement('ul');
+  ul.classList.add('list-unstyled');
 
   //remove the list prior to re-rendering
   if(list.firstChild) list.removeChild(list.firstChild);

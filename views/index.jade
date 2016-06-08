@@ -1,18 +1,18 @@
 extends layout
 
 block content
-  section.section.app
-    .container
-      header.hero.text-center
-        h1 Got.Em
-        h2 Emojis for your ears
-        h3 Create a room then share the link with your homies
-        p Name your shared room
-        form#joinNamed.form-inline
+  .text-center
+    .row
+      .col-sm-4.col-sm-offset-4
+        h4 Name your shared room
+        form#joinNamed
           .form-group
-            input(type="text" placeholder="Room Name")#roomName.form-control
-          button.btn.btn-default join
-        p Or start a random one
-        button#joinRandom.btn.btn-default join random
+            input(type="text" placeholder="Room Name")#roomName.form-control.input-lg
+          button.btn.btn-default.btn-lg.btn-block join
+    .row
+      .col-sm-4.col-sm-offset-4
+        h4.gap Or
+        h4 Start a random one
+        button#joinRandom.btn.btn-default.btn-lg.btn-block join random
 block scripts
   script(src="/javascripts/joinroom.js")
