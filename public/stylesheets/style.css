@@ -5,9 +5,11 @@ body{
 }
 a{
   color: #BF5842;
+  transition: all 300ms ease;
 }
 a:hover{
-  color: #CC5E46;
+  color: #D64A37;
+  text-decoration: none;
 }
 
 /*main*/
@@ -31,7 +33,7 @@ a:hover{
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.7);
 }
 .app > .container{
   position: relative;
@@ -81,9 +83,9 @@ a:hover{
   transition: all 300ms ease;
 }
 .btn-default:hover{
-  background: #CC5E46;
+  background: #D64A37;
   color: #fff;
-  border-color: #CC5E46;
+  border-color: #D64A37;
 }
 
 /*notifications*/

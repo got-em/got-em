@@ -1,12 +1,12 @@
 var socket = io();
 socket.emit('getRooms');
 socket.on('roomList', function(roomList) {
-  var list = document.getElementById('list');
-  var ul = document.createElement('ul');
-  ul.classList.add('list-unstyled');
+  var lobby = document.getElementById('lobby');
+  var list = document.createElement('div');
+  list.classList.add('list-group');
 
   //remove the list prior to re-rendering
-  if(list.firstChild) list.removeChild(list.firstChild);
+  if(lobby.firstChild) lobby.removeChild(lobby.firstChild);
 
   //check for active rooms
   if(roomList.length) {
@@ -17,19 +17,18 @@ socket.on('roomList', function(roomList) {
     });
 
     for(var i in filteredRoomList) {
-      var li = document.createElement('li');
       var link = document.createElement('a');
+      link.classList.add('list-group-item');
       link.innerText = filteredRoomList[i];
       link.setAttribute('href', '/room/' + filteredRoomList[i]);
-      li.appendChild(link);
-      ul.appendChild(li);
+      list.appendChild(link);
     }
   }
   else {
-    var msg = document.createElement('li');
+    var msg = document.createElement('p');
     msg.innerText = 'None Active :(';
-    ul.appendChild(msg);
+    list.appendChild(msg);
   }
 
-  list.appendChild(ul);
+  lobby.appendChild(list);
 });
