@@ -62,8 +62,13 @@ a:hover{
 
 /*tyopgraphy*/
 .jumbo{
-  font-size: 100px;
+  font-size: 60px;
   font-weight: 300;
+}
+@media(min-width:768px){
+  .jumbo{
+    font-size: 100px;
+  }
 }
 .page-header{
   border: 0;
