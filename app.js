@@ -78,7 +78,7 @@ io.on('connection', function(socket) {
     socket.room = room;
     socket.join(socket.room);
     console.log('user connected to', socket.room);
-    io.emit('notification', 'user has connected');
+    io.to(socket.room).emit('notification', 'user has connected');
     roomList.push(socket.room);
     io.emit('roomList', roomList);
   });
