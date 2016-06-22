@@ -89,7 +89,7 @@ socket.on('notification', function(msg){
 socket.on('load', function(soundList) {
   // Build sound dictionary (String -> Audio)
   sounds = soundList.reduce(function(sounds, sound) {
-    sounds[sound] = new Audio('/sounds/' + sound + '.mp3');
+    sounds[sound] = {};
     registerOnClick(sound);
     return sounds;
   }, sounds);
@@ -100,7 +100,9 @@ socket.on('play', function(sound) {
 
   if (muteEl.checked) return;
 
-  sounds[sound].play();
+  if (!sounds[sound]['file']) sounds[sound]['file'] = new Audio('/sounds/' + sound + '.mp3');
+
+  sounds[sound]['file'].play();
 });
 
 function registerOnClick(sound) {
