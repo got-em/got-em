@@ -105,6 +105,10 @@ socket.on('play', function(sound) {
   sounds[sound]['file'].play();
 });
 
+socket.on('reconnect', function() {
+  socket.emit('joinroom', room);
+});
+
 function registerOnClick(sound) {
   // Grab button element
   var el = document.querySelectorAll('[data-sound="' + sound + '"]');
