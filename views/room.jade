@@ -10,7 +10,7 @@ block content
         .row
           each sound in sounds
             .col-sm-3.col-xs-6
-              button.btn.soundpad-btn(data-sound=sound)= sound
+              button.btn.soundpad-btn(data-sound=sound.name)= sound.name
   #voice
     h3 GOT'EM VOICE ALPHA
     .row
