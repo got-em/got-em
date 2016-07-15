@@ -7,6 +7,13 @@ var speechLogEl = document.querySelectorAll('.textarea-speech-log')[0];
 var voicesLoaded = false;
 var room = window.location.pathname.split('/').pop();
 
+function shake(el) {
+  el.classList.add('shake');
+  setTimeout(function() {
+    el.classList.remove('shake');
+  }, 500);
+}
+
 //check to make sure speech is supported
 if(window.speechSynthesis) {
   // wait on voices to be loaded before fetching list (loaded async)
@@ -87,10 +94,12 @@ socket.on('notification', function(msg){
 });
 
 socket.on('load', function(soundList) {
-  // Build sound dictionary (String -> Audio)
+  // Build sound dictionary (String -> { el: DOMElement, file: Audio, name: string })
   sounds = soundList.reduce(function(sounds, sound) {
     sounds[sound.name] = {};
-    registerOnClick(sound.name);
+    sounds[sound.name].el = document.querySelectorAll('[data-sound="' + sound.name  + '"]')[0];
+    sounds[sound.name].name = sound.name;
+    registerOnClick(sounds[sound.name]);
     return sounds;
   }, sounds);
 });
@@ -102,7 +111,8 @@ socket.on('play', function(sound, directory) {
 
   if (!sounds[sound]['file']) sounds[sound]['file'] = new Audio('/sounds/' + directory + '/' + sound + '.mp3');
 
-  sounds[sound]['file'].play();
+  sounds[sound].file.play();
+  shake(sounds[sound].el);
 });
 
 socket.on('reconnect', function() {
@@ -110,14 +120,11 @@ socket.on('reconnect', function() {
 });
 
 function registerOnClick(sound) {
-  // Grab button element
-  var el = document.querySelectorAll('[data-sound="' + sound + '"]');
-
   // Register click handler
-  if (el.length) {
-    el[0].addEventListener('click', function() {
+  if (sound.el) {
+    sound.el.addEventListener('click', function() {
       var request = new XMLHttpRequest();
-      request.open('GET', '/sounds/' + sound + '?room=' + room, true);
+      request.open('GET', '/sounds/' + sound.name + '?room=' + room, true);
       request.onerror = function() {
         alert('Could not reach server!');
       };
