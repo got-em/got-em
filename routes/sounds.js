@@ -1,23 +1,19 @@
 const express = require('express');
 const router = express.Router();
 
-const sounds = require('../lib/sounds');
+var getSounds = require('../lib/sounds');
+var sounds = getSounds('all');
 
 module.exports = io => {
-  // broadcast list of sounds
-  io.on('connection', function(socket) {
-    socket.emit('load', sounds);
-  });
-
   router.get('/', function(req, res, next) {
     res.redirect('/');
   });
 
   // expose routes per sound
   sounds.forEach((sound) => {
-    router.get(`/${sound}`, function(req, res, next) {
+    router.get(`/${sound.name}`, function(req, res, next) {
       var room = req.query.room;
-      io.to(room).emit('play', sound);
+      io.to(room).emit('play', sound.name, sound.directory);
       return res.status(200).json({ status: 'ok' });
     });
   });

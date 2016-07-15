@@ -89,18 +89,18 @@ socket.on('notification', function(msg){
 socket.on('load', function(soundList) {
   // Build sound dictionary (String -> Audio)
   sounds = soundList.reduce(function(sounds, sound) {
-    sounds[sound] = {};
-    registerOnClick(sound);
+    sounds[sound.name] = {};
+    registerOnClick(sound.name);
     return sounds;
   }, sounds);
 });
 
-socket.on('play', function(sound) {
+socket.on('play', function(sound, directory) {
   if (!sounds[sound]) return console.error('Missing sound: ' + sound);
 
   if (muteEl.checked) return;
 
-  if (!sounds[sound]['file']) sounds[sound]['file'] = new Audio('/sounds/' + sound + '.mp3');
+  if (!sounds[sound]['file']) sounds[sound]['file'] = new Audio('/sounds/' + directory + '/' + sound + '.mp3');
 
   sounds[sound]['file'].play();
 });
