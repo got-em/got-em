@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var getSounds = require('../lib/sounds');
+var sounds = getSounds();
 
 module.exports = io => {
   router.get('/', function(req, res, next) {
@@ -8,13 +9,6 @@ module.exports = io => {
   });
 
   router.get('/room/:room_id', function(req, res, next) {
-    var addon = req.query.addon;
-    var sounds = getSounds(addon);
-
-    io.on('connection', function(socket) {
-      socket.emit('load', sounds);
-    });
-
     var soundsGroup = [];
     var groupSize = 4;
     for(var i = 0; i < sounds.length; i += groupSize){
@@ -25,6 +19,10 @@ module.exports = io => {
 
   router.get('/lobby', function(req, res, next) {
     res.render('lobby');
+  });
+
+  io.on('connection', function(socket) {
+    socket.emit('load', sounds);
   });
 
   return router;
