@@ -9,12 +9,11 @@ module.exports = io => {
   });
 
   router.get('/room/:room_id', function(req, res, next) {
-    var soundsGroup = [];
-    var groupSize = 4;
-    for(var i = 0; i < sounds.length; i += groupSize){
-      soundsGroup.push(sounds.slice(i, i + groupSize));
-    }
     res.render('room', { soundsGroup });
+  });
+
+  router.get('/soundlist', function(req, res, next) {
+    res.send(sounds);
   });
 
   router.get('/lobby', function(req, res, next) {
