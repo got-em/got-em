@@ -9,7 +9,7 @@ module.exports = io => {
   });
 
   router.get('/room/:room_id', function(req, res, next) {
-    res.render('room', { soundsGroup });
+    res.render('room');
   });
 
   router.get('/soundlist', function(req, res, next) {
