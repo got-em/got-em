@@ -4,14 +4,8 @@ import {render} from 'react-dom';
 class Button extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    };
+    this.state = {};
     this.buttonHandler = this.buttonHandler.bind(this);
-  }
-
-  componentDidMount() {
-
   }
 
   buttonHandler() {
