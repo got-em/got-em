@@ -67,7 +67,7 @@ class App extends React.Component {
       const msg = data.message;
       const msgVoice = data.voice;
       const textarea = document.getElementById('speech-log');
-      let logs = this.state.logs;
+      let logs = this.state.logs.slice();
 
       if (!msg.length) return;
 
