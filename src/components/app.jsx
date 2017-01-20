@@ -3,6 +3,7 @@ import {render} from 'react-dom';
 import Button from './button.jsx';
 import Soundboard from './soundboard.jsx';
 import Chat from './chat.jsx';
+import Notify from '../lib/notification.js';
 
 const socket = io();
 const room = window.location.pathname.split('/').pop();
@@ -27,7 +28,6 @@ class App extends React.Component {
     this.speech = this.speech.bind(this);
     this.setMessage = this.setMessage.bind(this);
     this.setMute = this.setMute.bind(this);
-    this.notify = this.notify.bind(this);
     this.setVoice = this.setVoice.bind(this);
 
     socket.emit('joinroom', room);
@@ -37,7 +37,7 @@ class App extends React.Component {
     });
 
     socket.on('notification', (msg) => {
-      this.notify(msg);
+      Notify(msg);
     });
 
     socket.on('load', (soundList) => {
@@ -134,29 +134,6 @@ class App extends React.Component {
     request.setRequestHeader('Content-Type', 'application/json');
     request.send(JSON.stringify({ message: this.state.message, voice: this.state.selectedVoice }));
   };
-
-  notify(msg) {
-    const notificationManager = document.getElementById('notification-manager');
-    const toast = document.createElement('div');
-    const toastMsg = document.createTextNode(msg);
-    toast.className='toast';
-    toast.appendChild(toastMsg);
-    notificationManager.appendChild(toast);
-    const promise = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        toast.classList.toggle('toast--active');
-        setTimeout(() => {
-          toast.classList.toggle('toast--active');
-          resolve();
-        }, 1000);
-      }, 1000);
-    });
-    promise.then(() => {
-      setTimeout(() => {
-        notificationManager.removeChild(toast);
-      }, 300);
-    });
-  }
 
   render() {
     return (
