@@ -9,11 +9,9 @@ module.exports = io => {
   });
 
   router.get('/room/:room_id', function(req, res, next) {
-    res.render('room');
-  });
-
-  router.get('/soundlist', function(req, res, next) {
-    res.send(sounds);
+    res.render('room', {
+      roomId: req.params.room_id
+    });
   });
 
   router.get('/lobby', function(req, res, next) {

@@ -24,7 +24,7 @@ a:hover{
   background-size: cover;
   background-attachment: fixed;
   position: relative;
-  padding: 100px 0;
+  padding: 10px 0;
 }
 .app:before{
   content: '';
@@ -45,7 +45,7 @@ a:hover{
 }
 .soundpad-btn{
   display: block;
-  height: 150px;
+  height: 100px;
   width: 100%;
   margin-bottom: 30px;
   background: #fff;
