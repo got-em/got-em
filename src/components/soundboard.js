@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
-import Button from './button.jsx';
+import Button from './button';
 
 class Soundboard extends React.Component {
   constructor(props) {
@@ -12,10 +12,10 @@ class Soundboard extends React.Component {
     const sounds = this.props.sounds.filter((sound) => {
       return sound.name.includes(this.props.filter) ? sound : false;
     });
-    
+
     return (
       <div className="soundpad">
-        <div className="form-group">
+        <div id="filter" className="form-group">
           <label>Sound Filter</label>
           <input type="text" className="form-control" placeholder="filter" value={this.props.filter} onChange={this.props.setFilter} />
         </div>

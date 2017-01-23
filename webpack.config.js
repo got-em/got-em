@@ -2,31 +2,32 @@ var webpack = require('webpack');
 var path = require('path');
 
 var BUILD_DIR = path.resolve(__dirname, 'public/javascripts');
-var APP_DIR = path.resolve(__dirname, 'src/components/');
+var APP_DIR = path.resolve(__dirname, 'src/');
 
 var config = {
-  entry: APP_DIR + '/app.jsx',
+  entry: APP_DIR + '/components/app.js',
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js'
   },
-  plugins: [
-  new webpack.optimize.UglifyJsPlugin({
-    minimize: true,
-    compress: {
-      warnings: false
-    }
-  })
-  ],
+  plugins: [],
   module : {
     loaders : [
-    {
-      test : /\.jsx?/,
-      include : APP_DIR,
-      loader : 'babel-loader'
-    }
+      {
+        test : /\.js$/,
+        include : APP_DIR,
+        loader : 'babel-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
+      }
     ]
-  }
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
 };
 
 module.exports = config;
