@@ -9,10 +9,13 @@ block content
           .form-group
             input(type="text" placeholder="Room Name")#roomName.form-control.input-lg
           button.btn.btn-default.btn-lg.btn-block join
+    .row.gap
+      .col-sm-4.col-sm-offset-4
+        h4 Create a random one
+        button#joinRandom.btn.btn-default.btn-lg.btn-block join random
     .row
       .col-sm-4.col-sm-offset-4
-        h4.gap Or
-        h4 Start a random one
-        button#joinRandom.btn.btn-default.btn-lg.btn-block join random
+        h4 Join an existing room
+        a.btn.btn-default.btn-lg.btn-block(href="lobby") lobby
 block scripts
   script(src="/javascripts/joinroom.js")

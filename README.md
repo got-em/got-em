@@ -17,10 +17,18 @@ Run
 npm start
 ```
 
-or watch files
+Watch
+---
 
 ```
-npm run watch
+npm run dev
+```
+
+Build
+---
+
+```
+npm run build
 ```
 
 API

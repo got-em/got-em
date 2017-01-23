@@ -1,36 +1,6 @@
 extends layout
 
 block content
-  .text-center
-    h3 Have others join this room by sharing your room location
-    p Your room URL is 
-      a(href="#")#roomLocation
-    .soundpad
-      each sounds in soundsGroup
-        .row
-          each sound in sounds
-            .col-sm-3.col-xs-6
-              button.btn.soundpad-btn(data-sound=sound.name)= sound.name
-  #voice
-    h3 GOT'EM VOICE ALPHA
-    .row
-      .col-sm-5
-        form.speech(onsubmit="return speech()")
-          .form-group
-            label Voice ALPHA
-            select.select-voice.form-control
-          .form-group
-            input.input-speech.form-control(type="text", name="message", placeholder="Enter text-to-speech message")
-          .form-group
-            button.btn.btn-default(type="submit") Submit
-          .form-group
-            p
-              label
-                input.mute(type="checkbox")
-                | &nbsp;Local Mute
-      .col-sm-7
-        .form-group
-          label(for="speech-log") Text-to-speech Log
-          textarea#speech-log.textarea-speech-log.form-control(rows="10", readonly)
+  #app
 block scripts
-  script(src="/javascripts/main.js")
+  script(src="/javascripts/bundle.js")
