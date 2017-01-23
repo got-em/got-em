@@ -79,6 +79,7 @@ io.on('connection', function(socket) {
     socket.join(socket.room);
     console.log('user connected to', socket.room);
     io.to(socket.room).emit('notification', 'user has connected');
+    io.to(socket.room).emit('listeners', io.sockets.adapter.rooms[room].length);
     roomList.push(socket.room);
     io.emit('roomList', roomList);
   });
@@ -86,6 +87,8 @@ io.on('connection', function(socket) {
   socket.on('disconnect', function() {
     if(socket.room){
       socket.leave(socket.room);
+      const listeners = io.sockets.adapter.rooms[socket.room] ? io.sockets.adapter.rooms[socket.room].length : 0;
+      io.to(socket.room).emit('listeners', listeners);
       console.log('user disconnected from', socket.room);
       roomList.splice(roomList.indexOf(socket.room), 1);
       io.emit('roomList', roomList);

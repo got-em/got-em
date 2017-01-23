@@ -2,6 +2,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import Button from './button.jsx';
 import Soundboard from './soundboard.jsx';
+import Listeners from './listeners.jsx';
 import Chat from './chat.jsx';
 import Notify from '../lib/notification.js';
 
@@ -21,7 +22,8 @@ class App extends React.Component {
       voices: [],
       selectedVoice: '',
       logs: [],
-      mute: false
+      mute: false,
+      listeners: 0
     };
     this.setFilter = this.setFilter.bind(this);
     this.playSound = this.playSound.bind(this);
@@ -31,6 +33,8 @@ class App extends React.Component {
     this.setVoice = this.setVoice.bind(this);
 
     socket.emit('joinroom', room);
+
+    socket.on('listeners', (listeners) => this.setState({listeners}));
 
     socket.on('reconnect', () => {
       socket.emit('joinroom', room);
@@ -141,6 +145,7 @@ class App extends React.Component {
         <div className="text-center">
           <h3>Have others join this room by sharing your room location</h3>
           <p>Your room URL is <a href={url}>{url}</a></p>
+          <p><Listeners listeners={this.state.listeners}/></p>
         </div>
         <Soundboard filter={this.state.filter} setFilter={this.setFilter} sounds={this.state.sounds} playSound={this.playSound} />
         <Chat setVoice={this.setVoice} setMessage={this.setMessage} message={this.state.message} voices={this.state.voices} speech={this.speech} setMute={this.setMute} logs={this.state.logs} />
