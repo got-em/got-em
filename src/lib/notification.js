@@ -1,24 +1,22 @@
-var notify = function(msg) {
-  var notificationManager = document.getElementById('notification-manager');
-  var toast = document.createElement('div');
-  var toastMsg = document.createTextNode(msg);
+export default function notify(msg) {
+  const notificationManager = document.getElementById('notification-manager');
+  const toast = document.createElement('div');
+  const toastMsg = document.createTextNode(msg);
   toast.className='toast';
   toast.appendChild(toastMsg);
   notificationManager.appendChild(toast);
-  var promise = new Promise(function(resolve, reject) {
-    setTimeout(function() {
+  const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
       toast.classList.toggle('toast--active');
-      setTimeout(function() {
+      setTimeout(() => {
         toast.classList.toggle('toast--active');
         resolve();
       }, 1000);
     }, 1000);
   });
-  promise.then(function() {
-    setTimeout(function() {
+  promise.then(() => {
+    setTimeout(() => {
       notificationManager.removeChild(toast);
     }, 300);
   });
 }
-
-module.exports = notify;
