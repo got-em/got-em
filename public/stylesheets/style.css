@@ -20,23 +20,10 @@ a:hover{
 }
 .app{
   flex: 1;
-  background: url('../images/bg.jpeg') center center;
+  background: url('../images/bg_min.jpg') center center;
   background-size: cover;
   background-attachment: fixed;
-  position: relative;
   padding: 10px 0;
-}
-.app:before{
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.7);
-}
-.app > .container{
-  position: relative;
 }
 
 /*soundpad*/
