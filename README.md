@@ -36,6 +36,8 @@ npm run build
 API
 ---
 
+The API is served up on port 3000.
+
 #### GET /
 
 View main page. Play sounds or text-to-speech.
@@ -57,6 +59,15 @@ Text-to-speech
   * text - name of the sound file to play
 
 Play a sound via POST
+
+
+Docker
+---
+
+```
+docker build -t got-em .
+docker run -d -p 3000:3000 --name got-em got-em
+```
 
 License
 ---
