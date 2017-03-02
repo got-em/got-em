@@ -6,8 +6,9 @@
     "start": "node ./bin/www",
     "watch": "nodemon ./bin/www",
     "build": "webpack -p && gulp",
+    "dev": "npm-run-all --parallel start dev:js dev:sass",
     "dev:js": "webpack -d --watch --colors --progress",
-    "dev:sass": "gulp sass"
+    "dev:sass": "gulp watch"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -31,6 +32,7 @@
     "gulp-sass": "^3.1.0",
     "jump.js": "^1.0.2",
     "nodemon": "^1.9.1",
+    "npm-run-all": "^4.0.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "style-loader": "^0.13.1",
