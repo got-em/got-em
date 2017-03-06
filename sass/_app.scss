@@ -80,3 +80,34 @@
   animation: shake 500ms forwards;
   transform-origin: 50% 50%;
 }
+
+@keyframes shake {
+  0% {
+    top: 0;
+    transform: scale(1);
+  }
+  20% {
+    top: 0px;
+    transform: rotate(3deg) scale(1.1);
+  }
+  40% {
+    top: 0;
+    transform: rotate(-2deg) scale(1.1);
+  }
+  60% {
+    top: 0px;
+    transform: rotate(2deg) scale(1.1);
+  }
+  80% {
+    top: 0;
+    transform: rotate(-1deg) scale(1.1);
+  }
+  90% {
+    top: 0px;
+    transform: rotate(1deg) scale(1.05);
+  }
+  100% {
+    top: 0;
+    transform: rotate(0) scale(1);
+  }
+}
