@@ -145,11 +145,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <div className="text-center">
-          <h3>Have others join this room by sharing your room location</h3>
-          <p id="share">Your room URL is <a href={url}>{url}</a></p>
-          <p><Listeners listeners={this.state.listeners}/> | <a href="#" onClick={tour.replay}>Help</a></p>
-        </div>
+        <h3>Have others join this room by sharing your room location</h3>
+        <p id="share" className="break-word">Your room URL is <a href={url}>{url}</a></p>
+        <p><Listeners listeners={this.state.listeners}/> | <a href="#" onClick={tour.replay}>Help</a></p>
         <Soundboard filter={this.state.filter} setFilter={this.setFilter} sounds={this.state.sounds} playSound={this.playSound} />
         <Chat setVoice={this.setVoice} setMessage={this.setMessage} message={this.state.message} voices={this.state.voices} speech={this.speech} setMute={this.setMute} logs={this.state.logs} />
       </div>

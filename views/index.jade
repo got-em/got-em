@@ -1,21 +1,18 @@
 extends layout
 
 block content
-  .text-center
-    .row
-      .col-sm-4.col-sm-offset-4
-        h4 Name your shared room
-        form#joinNamed
-          .form-group
-            input(type="text" placeholder="Room Name")#roomName.form-control.input-lg
-          button.btn.btn-default.btn-lg.btn-block join
-    .row.gap
-      .col-sm-4.col-sm-offset-4
-        h4 Create a random one
-        button#joinRandom.btn.btn-default.btn-lg.btn-block join random
-    .row
-      .col-sm-4.col-sm-offset-4
-        h4 Join an existing room
-        a.btn.btn-default.btn-lg.btn-block(href="lobby") lobby
+  .row.row-centered
+    .col.col4
+      form#joinNamed.form-group
+        .form-group
+          label Name your shared room
+          input(type="text" placeholder="Room Name")#roomName
+        button.btn.btn-default.btn-block join
+      .form-group
+        label Create a random one
+        button#joinRandom.btn.btn-default.btn-block join random
+      .form-group
+        label Join an existing room
+        a.btn.btn-default.btn-block(href="lobby") lobby
 block scripts
   script(src="/javascripts/joinroom.js")

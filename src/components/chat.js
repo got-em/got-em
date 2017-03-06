@@ -10,34 +10,29 @@ class Chat extends React.Component {
   render() {
     return (
       <div id="voice">
-        <h3>GOT'EM VOICE ALPHA</h3>
+        <h3>GOT'EM VOICE</h3>
         <div className="row">
-          <div className="col-sm-5">
-            <form className="speech">
+          <div className="col col6">
+            <form>
               <div className="form-group">
-                <label>Voice ALPHA</label>
-                <select onChange={this.props.setVoice} className="select-voice form-control">
+                <label>Voice</label>
+                <select onChange={this.props.setVoice}>
                   {this.props.voices.map((voice, id) => {
                     return <option key={id} value={voice}>{voice}</option>
                   })}
                 </select>
               </div>
               <div className="form-group">
-                <input onChange={this.props.setMessage} value={this.props.message} type="text" name="message" placeholder="Enter text-to-speech message" className="input-speech form-control" />
+                <label>Message</label>
+                <input onChange={this.props.setMessage} value={this.props.message} type="text" name="message" placeholder="message" />
               </div>
-              <div className="form-group">
-                <button onClick={this.props.speech} type="submit" className="btn btn-default">Submit</button>
-              </div>
-              <div className="form-group">
-                <p><label><input type="checkbox" className="mute" onChange={this.props.setMute}/>&nbsp;Local Mute</label></p>
-              </div>
+              <button onClick={this.props.speech} type="submit" className="btn btn-default">Submit</button>
+              <p><label><input type="checkbox" onChange={this.props.setMute}/>&nbsp;Local Mute</label></p>
             </form>
           </div>
-          <div className="col-sm-7">
-            <div className="form-group">
-              <label htmlFor="speech-log">Text-to-speech Log</label>
-              <textarea id="speech-log" rows="10" readOnly className="textarea-speech-log form-control" value={this.props.logs} />
-            </div>
+          <div className="col col6">
+            <label htmlFor="speech-log">Chat</label>
+            <textarea id="speech-log" rows="10" readOnly value={this.props.logs} />
           </div>
         </div>
       </div>

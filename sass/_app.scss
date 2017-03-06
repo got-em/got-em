@@ -1,0 +1,82 @@
+.main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.app {
+  flex: 1;
+  background: url("../images/bg_min.jpg") center center;
+  background-size: cover;
+  background-attachment: fixed;
+  padding: 1rem 0;
+}
+
+.btn {
+  display: inline-block;
+  padding: .5rem 1rem;
+  border: 0;
+  border-radius: .25rem;
+  text-transform: capitalize;
+  &-block {
+    display: block;
+    width: 100%;
+  }
+}
+
+.btn-default {
+  background: $red;
+  color: #fff;
+  transition: $transition;
+  &:hover {
+    background: $red-hover;
+    color: #fff;
+  }
+}
+
+.soundpad-btn {
+  display: block;
+  height: 6rem;
+  width: 100%;
+  background: #fff;
+  color: #333;
+  transition: $transition;
+  word-break: break-word;
+  margin-bottom: 2rem;
+  &:hover {
+    background: $red-hover;
+    color: #fff;
+  }
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.break-word {
+  word-wrap: break-word;
+}
+
+#notification-manager {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.toast {
+  background: $red;
+  color: #fff;
+  padding: 1rem;
+  opacity: 0;
+  transition: $transition;
+}
+
+.toast--active {
+  opacity: 1;
+}
+
+.shake {
+  animation: shake 500ms forwards;
+  transform-origin: 50% 50%;
+}
