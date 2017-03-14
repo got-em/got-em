@@ -1,6 +1,12 @@
 extends layout
 
 block content
-  h2= message
-  p= error.status
-  pre #{error.stack}
+  section.app
+    .container
+      header.header-main
+        h1
+          a(href="/") GOT'EM
+        h2 Emojis for your ears
+      p= message
+      p= error.status
+      pre #{error.stack}

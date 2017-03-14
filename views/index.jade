@@ -1,18 +1,26 @@
 extends layout
 
 block content
-  .row.row-centered
-    .col.col4
-      form#joinNamed.form-group
-        .form-group
-          label Name your shared room
-          input(type="text" placeholder="Room Name")#roomName
-        button.btn.btn-default.btn-block join
-      .form-group
-        label Create a random one
-        button#joinRandom.btn.btn-default.btn-block join random
-      .form-group
-        label Join an existing room
-        a.btn.btn-default.btn-block(href="lobby") lobby
+  section.app.splash
+    .container
+      header
+        h1 GOT'EM
+        h2 Emojis for your ears
+      .row
+        .col.col4
+          p.fa.fa-comment.jumbo
+          form#joinNamed.form-group
+            .form-group
+              label Name your shared room
+              input(type="text" placeholder="Room Name")#roomName
+            button.btn.btn-default.btn-block join
+        .col.col4
+          p.fa.fa-cog.jumbo
+          label Create a random one
+          button#joinRandom.btn.btn-default.btn-block join random
+        .col.col4
+          p.fa.fa-sign-in.jumbo
+          label Join an existing room
+          a.btn.btn-default.btn-block(href="lobby") lobby
 block scripts
   script(src="/javascripts/joinroom.js")
