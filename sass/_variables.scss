@@ -1,0 +1,17 @@
+$red: #BF5842;
+$red-hover: #D64A37;
+$transition: all 300ms ease;
+
+@mixin breakpoint($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: 48rem) { @content; }
+  }
+ 
+  @else if $breakpoint == md {
+    @media (min-width: 62rem) { @content; }
+  }
+ 
+  @else if $breakpoint == lg {
+    @media (min-width: 75rem) { @content; }
+  }
+}

@@ -17,12 +17,14 @@ class Soundboard extends React.Component {
       <div className="soundpad">
         <div id="filter" className="form-group">
           <label>Sound Filter</label>
-          <input type="text" className="form-control" placeholder="filter" value={this.props.filter} onChange={this.props.setFilter} />
+          <input type="text" placeholder="filter" value={this.props.filter} onChange={this.props.setFilter} />
         </div>
         <div className="row">
           {sounds.map((sound, id) => {
             return (
-              <Button key={id} sound={sound} playSound={this.props.playSound} />
+              <div className="col col2" key={id} >
+                <Button sound={sound} playSound={this.props.playSound} />
+              </div>
             )
           })}
         </div>

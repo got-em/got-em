@@ -5,23 +5,25 @@ html
       title Got em | #{roomId}
     else
       title Got em
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
-    link(href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css')
+    link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css')
+    link(href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css')
     link(rel='stylesheet', href='/stylesheets/style.css')
     meta(name='viewport', content='width=device-width, initial-scale=1')
   body
     .main
       section.app
         .container
-          header.text-center.page-header
+          header
             h1.jumbo
               a(href='/') GOT'EM
             h2 Emojis for your ears
           block content
-        hr
-        .container.text-center
-          iframe(src='https://ghbtns.com/github-btn.html?user=prestonp&repo=got-em&type=star&count=true&size=large', frameborder='0', scrolling='0', width='120px', height='30px')
-          iframe(src='https://ghbtns.com/github-btn.html?user=prestonp&repo=got-em&type=fork&count=true&size=large', frameborder='0', scrolling='0', width='120px', height='30px')
+      footer
+        .container
+          h3 catch us on 
+            a(href='https://github.com/prestonp/got-em' target='_blank')
+              i.fa.fa-github
+          small GOTEM 2017
     #notification-manager
-    script(src="/socket.io/socket.io.js")
+    script(src='/socket.io/socket.io.js')
     block scripts

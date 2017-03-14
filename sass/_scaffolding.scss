@@ -1,0 +1,34 @@
+.container {
+  max-width: 60rem;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -1rem;
+  &-centered {
+    justify-content: center;
+  }
+}
+
+.col {
+  padding: 0 1rem;
+}
+
+@for $i from 1 through 12 {
+  .col#{$i} {
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
+
+@include breakpoint(sm) {
+  @for $i from 1 through 12 {
+    .col#{$i} {
+      max-width: $i/12*100%;
+      flex-basis: $i/12*100%;
+    }
+  }
+}
