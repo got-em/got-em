@@ -10,7 +10,27 @@
   background: url("../images/bg_min.jpg") center center;
   background-size: cover;
   background-attachment: fixed;
-  padding: 1rem 0;
+}
+
+.splash {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  > .container {
+    flex: 1;
+  }
+
+  h1 {
+    @include breakpoint(sm) {
+      font-size: 10.541rem;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.header-main {
+  margin-bottom: 1rem;
 }
 
 .btn {
@@ -43,10 +63,13 @@
   color: #333;
   transition: $transition;
   word-break: break-word;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   &:hover {
     background: $red-hover;
     color: #fff;
+  }
+  @include breakpoint(sm) {
+    margin-bottom: 2rem;
   }
 }
 

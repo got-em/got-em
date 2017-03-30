@@ -1,6 +1,12 @@
 extends layout
 
 block content
-  #lobby
+  section.app
+    .container
+      header.header-main
+        h1
+          a(href="/") GOT'EM
+        h2 Emojis for your ears
+      #lobby
 block scripts
   script(src="/javascripts/lobby.js")

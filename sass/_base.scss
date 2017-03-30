@@ -12,10 +12,13 @@ html {
 
 body {
   color: #fff;
-  font-family: 'Lato', sans-serif;
+  background: #111;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   line-height: 1.4;
   font-size: 1rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscaled;
 }
 
 button,
@@ -49,6 +52,10 @@ label {
 
 button {
   cursor: pointer;
+}
+
+section {
+  padding: 1rem 0;
 }
 
 footer {
