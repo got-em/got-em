@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 var getSounds = require('../lib/sounds');
-var sounds = getSounds('all');
+var sounds = getSounds();
 
 module.exports = io => {
   router.get('/', function(req, res, next) {
