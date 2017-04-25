@@ -2,7 +2,7 @@ var socket = io();
 socket.emit('getRooms');
 socket.on('roomList', function(roomList) {
   var lobby = document.getElementById('lobby');
-  var list = document.createElement('div');
+  var list = document.createElement('ul');
   list.classList.add('list-group');
 
   //remove the list prior to re-rendering
@@ -18,10 +18,12 @@ socket.on('roomList', function(roomList) {
 
     for(var i in filteredRoomList) {
       var link = document.createElement('a');
+      var listItem = document.createElement('li');
       link.classList.add('list-group-item');
       link.innerText = filteredRoomList[i];
       link.setAttribute('href', '/room/' + filteredRoomList[i]);
-      list.appendChild(link);
+      listItem.appendChild(link);
+      list.appendChild(listItem);
     }
   }
   else {
