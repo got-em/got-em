@@ -58,6 +58,10 @@ section {
   padding: 1rem 0;
 }
 
+ul {
+  list-style: none;
+}
+
 footer {
   background: #111;
   padding: 1rem 0;
