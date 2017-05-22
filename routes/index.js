@@ -9,9 +9,14 @@ module.exports = io => {
   });
 
   router.get('/room/:room_id', function(req, res, next) {
-    res.render('room', {
-      roomId: req.params.room_id
-    });
+    var reg = /^[a-zA-Z0-9]+$/;
+    if (!reg.test(req.params.room_id)) {
+      res.redirect('/');
+    } else {
+      res.render('room', {
+        roomId: req.params.room_id
+      });
+    }
   });
 
   router.get('/lobby', function(req, res, next) {

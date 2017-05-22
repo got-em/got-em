@@ -12,7 +12,7 @@ block content
           form#joinNamed.form-group
             .form-group
               label Name your shared room
-              input(type="text" placeholder="Room Name")#roomName
+              input(type="text" placeholder="Room Name" pattern="^[a-zA-Z0-9]+$")#roomName
             button.btn.btn-default.btn-block join
         .col.col4
           p.fa.fa-cog.jumbo

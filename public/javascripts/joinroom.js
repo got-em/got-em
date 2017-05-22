@@ -9,7 +9,13 @@ function guid() {
 
 function joinRoom(name) {
   name = name || guid();
-  window.location = '/room/' + name;
+  var reg = /^[a-zA-Z0-9]+$/;
+  if (reg.test(name)) {
+    window.location = '/room/' + name;
+  }
+  else {
+    console.error('Invalid characters used');
+  }
 }
 
 var namedForm = document.getElementById('joinNamed');
