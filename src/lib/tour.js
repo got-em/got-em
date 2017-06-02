@@ -22,7 +22,7 @@ tour.options.defaults.buttons = [
 tour.addStep('welcome', {
   title: 'Welcome!',
   text: 'Got\'Em is a social soundboard. Triggering sounds notifies listeners in the room.',
-  attachTo: '.page-header bottom',
+  attachTo: '.header-main bottom',
   buttons: [
     {text: 'Next', action: tour.next}
   ]

@@ -86,7 +86,7 @@ class App extends React.Component {
         window.speechSynthesis.speak(utterance);
       }
 
-      logs.push('(' + msgVoice + ' ' + new Date().toLocaleTimeString() + ') ' + msg + '\n');
+      logs.push(`(${msgVoice} ${new Date().toLocaleTimeString()}) ${msg}`);
       this.setState({ logs: logs });
       textarea.scrollTop = textarea.scrollHeight;
     });
