@@ -32,7 +32,7 @@ class Chat extends React.Component {
           </div>
           <div className="col col6">
             <label htmlFor="speech-log">Chat</label>
-            <textarea id="speech-log" rows="10" readOnly value={this.props.logs} />
+            <textarea id="speech-log" rows="10" readOnly value={this.props.logs.join('\n')} />
           </div>
         </div>
       </div>
