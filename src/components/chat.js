@@ -16,7 +16,7 @@ class Chat extends React.Component {
             <form>
               <div className="form-group">
                 <label>Voice</label>
-                <select onChange={this.props.setVoice}>
+                <select onChange={this.props.inputHandler}>
                   {this.props.voices.map((voice, id) => {
                     return <option key={id} value={voice}>{voice}</option>
                   })}
@@ -24,10 +24,10 @@ class Chat extends React.Component {
               </div>
               <div className="form-group">
                 <label>Message</label>
-                <input onChange={this.props.setMessage} value={this.props.message} type="text" name="message" placeholder="message" />
+                <input onChange={this.props.inputHandler} value={this.props.message} type="text" name="message" placeholder="message" />
               </div>
               <button onClick={this.props.speech} type="submit" className="btn btn-default">Submit</button>
-              <p><label><input type="checkbox" onChange={this.props.setMute}/>&nbsp;Local Mute</label></p>
+              <p><label><input type="checkbox" onChange={this.props.inputHandler} name="mute"/>&nbsp;Local Mute</label></p>
             </form>
           </div>
           <div className="col col6">
