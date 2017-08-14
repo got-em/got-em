@@ -9,7 +9,7 @@ class Soundboard extends React.Component {
   }
 
   render() {
-    const sounds = this.props.sounds.filter((sound) => {
+    const sounds = this.props.sounds.filter(sound => {
       return sound.name.includes(this.props.filter) ? sound : false;
     });
 
@@ -17,7 +17,7 @@ class Soundboard extends React.Component {
       <div className="soundpad">
         <div id="filter" className="form-group">
           <label>Sound Filter</label>
-          <input type="text" placeholder="filter" value={this.props.filter} onChange={this.props.setFilter} />
+          <input type="text" placeholder="filter" name="filter" value={this.props.filter} onChange={this.props.inputHandler} />
         </div>
         <div className="row">
           {sounds.map((sound, id) => {

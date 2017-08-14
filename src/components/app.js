@@ -26,12 +26,9 @@ class App extends React.Component {
       mute: false,
       listeners: 0
     };
-    this.setFilter = this.setFilter.bind(this);
+    this.inputHandler = this.inputHandler.bind(this);
     this.playSound = this.playSound.bind(this);
     this.speech = this.speech.bind(this);
-    this.setMessage = this.setMessage.bind(this);
-    this.setMute = this.setMute.bind(this);
-    this.setVoice = this.setVoice.bind(this);
 
     socket.emit('joinroom', room);
 
@@ -108,20 +105,10 @@ class App extends React.Component {
     tour.start();
   }
 
-  setFilter(e) {
-    this.setState({ filter: e.target.value });
-  }
-
-  setMessage(e) {
-    this.setState({ message: e.target.value });
-  }
-
-  setMute(e) {
-    this.setState({ mute: e.target.checked });
-  }
-
-  setVoice(e) {
-    this.setState({ selectedVoice: e.target.value });
+  inputHandler(e) {
+    const val = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    const name = e.target.name;
+    this.setState({ [name]: val });
   }
 
   playSound(sound) {
@@ -148,8 +135,17 @@ class App extends React.Component {
         <h3>Have others join this room by sharing your room location</h3>
         <p id="share" className="break-word">Your room URL is <a href={url}>{url}</a></p>
         <p><Listeners listeners={this.state.listeners}/> | <a href="#" onClick={tour.replay}>Help</a></p>
-        <Soundboard filter={this.state.filter} setFilter={this.setFilter} sounds={this.state.sounds} playSound={this.playSound} />
-        <Chat setVoice={this.setVoice} setMessage={this.setMessage} message={this.state.message} voices={this.state.voices} speech={this.speech} setMute={this.setMute} logs={this.state.logs} />
+        <Soundboard
+          filter={this.state.filter}
+          inputHandler={this.inputHandler}
+          sounds={this.state.sounds}
+          playSound={this.playSound} />
+        <Chat
+          inputHandler={this.inputHandler}
+          message={this.state.message}
+          voices={this.state.voices}
+          speech={this.speech}
+          logs={this.state.logs} />
       </div>
     )
   }
