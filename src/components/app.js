@@ -86,8 +86,7 @@ class App extends React.Component {
       if (voicesLoaded) return;
 
       voicesLoaded = true;
-      let voices = [];
-      window.speechSynthesis.getVoices().forEach(voice => voices.push(voice.name));
+      const voices = window.speechSynthesis.getVoices().map(voice => voice.name);
       this.setState({ voices: voices, selectedVoice: voices[0] });
     };
 
@@ -101,14 +100,14 @@ class App extends React.Component {
   }
 
   playSound(sound) {
-    Request('get', `/sounds/${sound}?room=${room}`);
+    const req = Request('get', `/sounds/${sound}?room=${room}`);
   }
 
   speech(e) {
     e.preventDefault();
     this.setState({ message: '' });
     const data = JSON.stringify({ message: this.state.message, voice: this.state.selectedVoice });
-    Request('post', `/speech?room=${room}`, data);
+    const req = Request('post', `/speech?room=${room}`, data);
   };
 
   render() {
