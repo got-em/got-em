@@ -6,6 +6,7 @@ import Listeners from './listeners';
 import Chat from './chat';
 import Notify from '../lib/notification';
 import * as tour from '../lib/tour';
+import Request from '../lib/request';
 
 const socket = io();
 const room = window.location.pathname.split('/').pop();
@@ -31,22 +32,14 @@ class App extends React.Component {
     this.speech = this.speech.bind(this);
 
     socket.emit('joinroom', room);
-
-    socket.on('listeners', (listeners) => this.setState({listeners}));
-
-    socket.on('reconnect', () => {
-      socket.emit('joinroom', room);
-    });
-
-    socket.on('notification', (msg) => {
-      Notify(msg);
-    });
-
-    socket.on('load', (soundList) => {
+    socket.on('listeners', listeners => this.setState({ listeners }));
+    socket.on('reconnect', () => socket.emit('joinroom', room));
+    socket.on('notification', msg => Notify(msg));
+    socket.on('load', soundList => {
       this.setState({ sounds: soundList }, () => {
         sounds = soundList.reduce((sounds, sound) => {
           sounds[sound.name] = {};
-          sounds[sound.name].el = document.querySelectorAll('[data-sound="' + sound.name  + '"]')[0];
+          sounds[sound.name].el = document.querySelectorAll(`[data-sound="${sound.name}"]`)[0];
           sounds[sound.name].name = sound.name;
           return sounds;
         }, sounds);
@@ -54,9 +47,9 @@ class App extends React.Component {
     });
 
     socket.on('play', (sound, directory) => {
-      if (!sounds[sound]) return console.error('Missing sound: ' + sound);
+      if (!sounds[sound]) return console.error(`Missing sound: ${sound}`);
 
-      if (!sounds[sound]['file']) sounds[sound]['file'] = new Audio('/sounds/' + directory + '/' + sound + '.mp3');
+      if (!sounds[sound]['file']) sounds[sound]['file'] = new Audio(`/sounds/${directory}/${sound}.mp3`);
 
       sounds[sound].file.play();
       sounds[sound].el.classList.add('shake');
@@ -65,7 +58,7 @@ class App extends React.Component {
       }, 500);
     });
 
-    socket.on('speech', (data) => {
+    socket.on('speech', data => {
       const msg = data.message;
       const msgVoice = data.voice;
       const textarea = document.getElementById('speech-log');
@@ -77,9 +70,7 @@ class App extends React.Component {
         let utterance = new SpeechSynthesisUtterance(msg);
         utterance.voice = speechSynthesis
                             .getVoices()
-                            .filter((voice) => {
-                              return voice.name === msgVoice;
-                            })[0];
+                            .filter(voice => voice.name === msgVoice )[0];
         window.speechSynthesis.speak(utterance);
       }
 
@@ -95,10 +86,7 @@ class App extends React.Component {
       if (voicesLoaded) return;
 
       voicesLoaded = true;
-      let voices = [];
-      window.speechSynthesis.getVoices().forEach((voice) => {
-        voices.push(voice.name);
-      });
+      const voices = window.speechSynthesis.getVoices().map(voice => voice.name);
       this.setState({ voices: voices, selectedVoice: voices[0] });
     };
 
@@ -112,28 +100,21 @@ class App extends React.Component {
   }
 
   playSound(sound) {
-    var request = new XMLHttpRequest();
-    request.open('GET', '/sounds/' + sound + '?room=' + room, true);
-    request.onerror = () => {
-      alert('Could not reach server!');
-    };
-    request.send();
+    const req = Request('get', `/sounds/${sound}?room=${room}`);
   }
 
-  speech (e) {
-    this.setState({ message: '' });
+  speech(e) {
     e.preventDefault();
-    const request = new XMLHttpRequest();
-    request.open('POST', '/speech?room=' + room, true);
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.send(JSON.stringify({ message: this.state.message, voice: this.state.selectedVoice }));
+    this.setState({ message: '' });
+    const data = JSON.stringify({ message: this.state.message, voice: this.state.selectedVoice });
+    const req = Request('post', `/speech?room=${room}`, data);
   };
 
   render() {
     return (
       <div>
         <h3>Have others join this room by sharing your room location</h3>
-        <p id="share" className="break-word">Your room URL is <a href={url}>{url}</a></p>
+        <p className="break-word">Your room URL is <a href={url}>{url}</a></p>
         <p><Listeners listeners={this.state.listeners}/> | <a href="#" onClick={tour.replay}>Help</a></p>
         <Soundboard
           filter={this.state.filter}
