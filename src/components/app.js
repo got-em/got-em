@@ -4,9 +4,9 @@ import Button from './button';
 import Soundboard from './soundboard';
 import Listeners from './listeners';
 import Chat from './chat';
-import Notify from '../lib/notification';
 import * as tour from '../lib/tour';
 import Request from '../lib/request';
+import Notifications from './notifications';
 
 const socket = io();
 const room = window.location.pathname.split('/').pop();
@@ -34,7 +34,6 @@ class App extends React.Component {
     socket.emit('joinroom', room);
     socket.on('listeners', listeners => this.setState({ listeners }));
     socket.on('reconnect', () => socket.emit('joinroom', room));
-    socket.on('notification', msg => Notify(msg));
     socket.on('load', soundList => {
       this.setState({ sounds: soundList }, () => {
         sounds = soundList.reduce((sounds, sound) => {
@@ -127,6 +126,7 @@ class App extends React.Component {
           voices={this.state.voices}
           speech={this.speech}
           logs={this.state.logs} />
+        <Notifications socket={socket} />
       </div>
     )
   }

@@ -81,7 +81,7 @@
   word-wrap: break-word;
 }
 
-#notification-manager {
+.notification-manager {
   position: fixed;
   top: 0;
   right: 0;
@@ -91,7 +91,6 @@
   background: $red;
   color: #fff;
   padding: 1rem;
-  opacity: 0;
   transition: $transition;
 }
 
