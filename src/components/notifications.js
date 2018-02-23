@@ -23,8 +23,10 @@ class Notifications extends React.Component {
   }
 
   removeNote(id) {
-    const messages = this.state.messages.filter(m => m.id != id);
-    this.setState({ messages });
+    setTimeout(() => {
+      const messages = this.state.messages.filter(m => m.id != id);
+      this.setState({ messages });
+    }, 300);
   }
 
   render() {
