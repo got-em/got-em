@@ -6,6 +6,7 @@
     "start": "node ./bin/www",
     "watch": "nodemon ./bin/www",
     "build": "webpack -p && gulp",
+    "postinstall": "webpack -p && gulp",
     "dev": "npm-run-all --parallel start dev:js dev:sass",
     "dev:js": "webpack -d --watch --colors --progress",
     "dev:sass": "gulp watch"
