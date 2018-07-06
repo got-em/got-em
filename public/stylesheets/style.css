@@ -337,7 +337,7 @@ small {
   word-wrap: break-word;
 }
 
-#notification-manager {
+.notification-manager {
   position: fixed;
   top: 0;
   right: 0;
@@ -347,8 +347,8 @@ small {
   background: #BF5842;
   color: #fff;
   padding: 1rem;
-  opacity: 0;
   transition: all 300ms ease;
+  opacity: 0;
 }
 
 .toast--active {
